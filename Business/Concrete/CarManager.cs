@@ -22,8 +22,14 @@ namespace Business.Concrete
 
         public void Add(Car car)
         {
-            //İş komutları(koşullar vb.)
-            _carDal.Add(car);
+            if (car.Description.Length>=2 && car.DailyPrice>0)
+            {
+                _carDal.Add(car);
+            }
+            else
+            {
+                Console.WriteLine("Girilen description en az 2 karakterden oluşmalı / daily price 0 dan büyük olmalı");
+            }
         }
 
         public void Delete(Car car)
@@ -40,14 +46,17 @@ namespace Business.Concrete
 
         public Car GetById(int Id)
         {
-            //İş komutları(koşullar vb.)
-            return _carDal.GetById(Id);
+            return _carDal.Get(p => p.Id == Id);
         }
 
-        public void Update(Car car)
+        public List<Car> GetCarsByBrandId(int brandId)
         {
-            //İş komutları(koşullar vb.)
-            _carDal.Update(car);
+            return _carDal.GetAll(p => p.BrandId == brandId).ToList();
+        }
+
+        public List<Car> GetCarsByColorId(int colorId)
+        {
+            return _carDal.GetAll(p => p.ColorId == colorId).ToList();
         }
     }
 }
