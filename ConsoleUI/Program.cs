@@ -16,7 +16,7 @@ namespace ConsoleUI
                 Console.WriteLine(car.Description);
             }
 
-            carManager.dele(new Car { ModelYear = 2020, Description = "2020 BMW", DailyPrice = 200, ColorId = 2, BrandId = 1 });
+            carManager.Delete(new Car { ModelYear = 2020, Description = "2020 BMW", DailyPrice = 200, ColorId = 2, BrandId = 1 });
 
         }
     }
